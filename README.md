@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[あなたの名前] | Personal Website</title>
+    <title>[坂田和真] | Personal Website</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -11,7 +11,7 @@
 
     <header>
         <div class="container">
-            <h1>[あなたの名前]</h1>
+            <h1>[坂田和真]</h1>
             <p>[あなたの肩書や簡単な説明 例: Web Developer / Designer]</p>
         </div>
     </header>
@@ -39,14 +39,14 @@
             <ul>
                 <li><a href="https://github.com/[あなたのGitHubユーザー名]" target="_blank">GitHub</a></li>
                 <li><a href="https://twitter.com/[あなたのTwitterユーザー名]" target="_blank">Twitter</a></li>
-                <li><a href="mailto:[あなたのメールアドレス]">Email</a></li>
+                <li><a href="mailto:[example@gmail.com]">Email</a></li>
             </ul>
         </section>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 [あなたの名前]. All Rights Reserved.</p>
+            <p>&copy; 2025 [坂田和真]. All Rights Reserved.</p>
         </div>
     </footer>
 
