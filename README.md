@@ -123,7 +123,7 @@
 
     <header>
         <div class="container">
-            <h1>坂田和真</h1>
+            <h1>Kazuma Sakata</h1>
             <p>Web Developer / Designer</p>
         </div>
     </header>
@@ -132,7 +132,7 @@
         <section class="profile">
             <h2>About Me</h2>
             <p>
-                こんにちは、坂田和真です。東京を拠点に活動するWebデベロッパーです。
+                例こんにちは、坂田和真です。東京を拠点に活動するWebデベロッパーです。
                 ユーザーフレンドリーで視覚的に魅力的なウェブサイトやアプリケーションを構築することに情熱を注いでいます。
                 特にJavaScript、React、Node.jsを使った開発を専門としており、常に新しい技術やベストプラクティスを学ぶことに意欲的です。
                 休日は、新しいプログラミング言語を試したり、都内のカフェ巡りを楽しんでいます。
