@@ -48,6 +48,35 @@
             box-shadow: none; /* セクションの影をなくす */
         }
 
+        /* プロフィール画像のスタイル (もし追加するなら) */
+        .profile-image {
+            display: block;
+            margin: 0 auto 20px auto;
+            max-width: 200px;
+            height: auto;
+            border-radius: 50%;
+            border: 3px solid #007bff;
+        }
+
+        /* 経歴の項目ごとのスタイル */
+        .experience ul li {
+            margin-bottom: 15px; /* 各経歴項目の下部に少しスペース */
+            padding-left: 15px; /* インデント */
+            border-left: 3px solid #007bff; /* 左側にラインを追加 */
+        }
+        .experience ul li strong {
+            display: block; /* 役職と会社名をブロック要素にして改行 */
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+        .experience ul li span.period {
+            display: block;
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+
         h2 {
             color: #007bff;
             border-bottom: 2px solid #eee;
@@ -82,32 +111,29 @@
         }
 
         /* --- ここからがスマホ対応の重要な部分です --- */
-
-        /* メディアクエリ: 画面幅が768px以下の場合に適用されるスタイル */
         @media (max-width: 768px) {
             .container {
-                width: 95%; /* スマホでは幅を広げる */
-                padding: 10px 0; /* パディングを調整 */
+                width: 95%;
+                padding: 10px 0;
             }
 
             header h1 {
-                font-size: 2em; /* スマホではフォントサイズを小さく */
+                font-size: 2em;
             }
 
             header p {
-                font-size: 1em; /* スマホではフォントサイズを小さく */
+                font-size: 1em;
             }
 
             section {
-                padding: 20px; /* スマホではパディングを小さく */
+                padding: 20px;
             }
 
             h2 {
-                font-size: 1.5em; /* スマホではセクションタイトルを小さく */
+                font-size: 1.5em;
             }
         }
 
-        /* さらに小さい画面（例: 480px以下）にも対応する場合 */
         @media (max-width: 480px) {
             header h1 {
                 font-size: 1.8em;
@@ -123,7 +149,7 @@
 
     <header>
         <div class="container">
-            <h1>Kazuma Sakata</h1>
+            <h1>坂田和真</h1>
             <p>Web Developer / Designer</p>
         </div>
     </header>
@@ -132,12 +158,40 @@
         <section class="profile">
             <h2>About Me</h2>
             <p>
-                例こんにちは、坂田和真です。東京を拠点に活動するWebデベロッパーです。
+                こんにちは、坂田和真です。東京を拠点に活動するWebデベロッパーです。
                 ユーザーフレンドリーで視覚的に魅力的なウェブサイトやアプリケーションを構築することに情熱を注いでいます。
                 特にJavaScript、React、Node.jsを使った開発を専門としており、常に新しい技術やベストプラクティスを学ぶことに意欲的です。
                 休日は、新しいプログラミング言語を試したり、都内のカフェ巡りを楽しんでいます。
             </p>
         </section>
+
+        ---
+
+        <section class="experience">
+            <h2>Experience</h2>
+            <ul>
+                <li>
+                    <span class="period">2022年4月 - 現在</span>
+                    <strong>リードWebデベロッパー</strong> @ 株式会社XYZテック
+                    <p>
+                        Webアプリケーションのフロントエンドおよびバックエンド開発を主導。
+                        ReactとNode.jsを使用した新規機能の開発、既存システムのパフォーマンス改善、チームメンバーの指導を担当。
+                        プロジェクトの効率を20%向上させ、顧客満足度を大幅に高めました。
+                    </p>
+                </li>
+                <li>
+                    <span class="period">2019年4月 - 2022年3月</span>
+                    <strong>フロントエンドエンジニア</strong> @ ABCデザインスタジオ
+                    <p>
+                        顧客ウェブサイトの企画、デザイン、開発を担当。
+                        HTML5, CSS3, JavaScript (jQuery) を用いたレスポンシブデザインの実装、UI/UXの改善提案を行いました。
+                        特に、アニメーションとインタラクションの導入により、ウェブサイトのエンゲージメント率を15%向上させました。
+                    </p>
+                </li>
+                </ul>
+        </section>
+
+        ---
 
         <section class="works">
             <h2>Works / Portfolio</h2>
@@ -147,6 +201,8 @@
                 <li><a href="https://example.com/mobile-app-concept" target="_blank">コンセプトモバイルアプリ：Tokyo Food Guide</a> - 東京の飲食店を案内するモバイルアプリケーションのUI/UXデザインとプロトタイプです。Figmaでデザインしました。</li>
             </ul>
         </section>
+
+        ---
 
         <section class="contact">
             <h2>Contact</h2>
@@ -161,7 +217,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 KazumaSakata. All Rights Reserved.</p>
+            <p>&copy; 2025 坂田和真. All Rights Reserved.</p>
         </div>
     </footer>
 
