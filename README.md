@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -5,13 +6,13 @@
     <title>坂田和真 | Personal Website</title>
 
     <style>
-        /* 基本的なスタイル（必要に応じて調整） */
+        /* 基本的なスタイル */
         body {
             font-family: sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f4f4f4; /* 全体の背景色 */
             color: #333;
         }
 
@@ -23,8 +24,8 @@
         }
 
         header {
-            background-color: #333;
-            color: #fff;
+            background-color: transparent; /* ヘッダーの背景色を透明に */
+            color: #333; /* ヘッダーのテキスト色をbodyと同じに調整 */
             padding: 20px 0;
             text-align: center;
         }
@@ -40,11 +41,11 @@
         }
 
         section {
-            background-color: #fff;
+            background-color: transparent; /* セクションの背景色を透明に */
             margin-bottom: 20px;
             padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: none; /* セクションの影をなくす */
         }
 
         h2 {
@@ -115,16 +116,15 @@
             header p {
                 font-size: 0.9em;
             }
-
-            /* 必要に応じて他の要素も調整 */
         }
     </style>
-    </head>
+</head>
 <body>
+
     <header>
         <div class="container">
             <h1>坂田和真</h1>
-            <p>あなたの肩書や簡単な説明 例: Web Developer / Designer</p>
+            <p>Web Developer / Designer</p>
         </div>
     </header>
 
@@ -132,16 +132,19 @@
         <section class="profile">
             <h2>About Me</h2>
             <p>
-                ここに自己紹介文を記述します。どのようなことに興味があり、何をしているのかなどを自由に書いてください。
+                こんにちは、坂田和真です。東京を拠点に活動するWebデベロッパーです。
+                ユーザーフレンドリーで視覚的に魅力的なウェブサイトやアプリケーションを構築することに情熱を注いでいます。
+                特にJavaScript、React、Node.jsを使った開発を専門としており、常に新しい技術やベストプラクティスを学ぶことに意欲的です。
+                休日は、新しいプログラミング言語を試したり、都内のカフェ巡りを楽しんでいます。
             </p>
         </section>
 
         <section class="works">
             <h2>Works / Portfolio</h2>
             <ul>
-                <li><a href="作品1のリンク" target="_blank">作品名1</a> - 作品の簡単な説明</li>
-                <li><a href="作品2のリンク" target="_blank">作品名2</a> - 作品の簡単な説明</li>
-                <li><a href="作品3のリンク" target="_blank">作品名3</a> - 作品の簡単な説明</li>
+                <li><a href="https://example.com/project-a" target="_blank">Eコマースサイト</a> - レスポンシブデザインに対応したオンラインストア構築プロジェクトです。</li>
+                <li><a href="https://github.com/kazuma-sakata/personal-blog" target="_blank">パーソナルブログエンジン</a> - Markdownサポートと軽量CMSを備えたカスタムビルドのブログエンジンです。Node.jsとExpressで開発しました。</li>
+                <li><a href="https://example.com/mobile-app-concept" target="_blank">コンセプトモバイルアプリ：Tokyo Food Guide</a> - 東京の飲食店を案内するモバイルアプリケーションのUI/UXデザインとプロトタイプです。Figmaでデザインしました。</li>
             </ul>
         </section>
 
@@ -149,9 +152,9 @@
             <h2>Contact</h2>
             <p>ご連絡は以下のリンクからお願いします。</p>
             <ul>
-                <li><a href="https://github.com/あなたのGitHubユーザー名" target="_blank">GitHub</a></li>
-                <li><a href="https://twitter.com/あなたのTwitterユーザー名" target="_blank">Twitter</a></li>
-                <li><a href="mailto:[example@gmail.com]">Email</a></li>
+                <li><a href="https://github.com/your-github-username" target="_blank">GitHub</a></li>
+                <li><a href="https://twitter.com/your-twitter-username" target="_blank">Twitter</a></li>
+                <li><a href="mailto:your.email@example.com">Email</a></li>
             </ul>
         </section>
     </main>
