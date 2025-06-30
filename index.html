@@ -224,7 +224,7 @@
 <body>
 
     <header>
-        <a href="blog.html" class="blog-link-top-right">記事</a>
+        <a href="blog/" class="blog-link-top-right">記事</a>
 
         <div class="container">
             <h1>Kazuma Sakata</h1>
@@ -277,7 +277,7 @@
             <ul id="blog-list">
                 </ul>
             <p style="text-align: right; margin-top: 20px;">
-                <a href="blog.html" class="read-more-link">すべてのブログ記事を見る &gt;&gt;</a>
+                <a href="blog/" class="read-more-link">すべてのブログ記事を見る &gt;&gt;</a>
             </p>
         </section>
 
@@ -362,21 +362,6 @@
                 url: "#" // 実際の記事へのリンクを設定
             }
         ];
-
-        // ハンバーガーメニューに関連するJavaScriptを削除
-        // const hamburgerMenu = document.getElementById('hamburger-menu');
-        // const sideNav = document.getElementById('side-nav');
-        // hamburgerMenu.addEventListener('click', () => {
-        //     hamburgerMenu.classList.toggle('open');
-        //     sideNav.classList.toggle('open');
-        // });
-        // sideNav.querySelectorAll('a').forEach(link => {
-        //     link.addEventListener('click', () => {
-        //         hamburgerMenu.classList.remove('open');
-        //         sideNav.classList.remove('open');
-        //     });
-        // });
-
 
         // ブログ記事を表示する関数 (index.html用: 最新3件のみ)
         function displayBlogPostsIndex() {
