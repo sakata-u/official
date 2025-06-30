@@ -345,9 +345,9 @@
 
             postsToDisplay.forEach(post => {
                 const listItem = document.createElement('li');
-                // メインサイトではtarget="_blank"は不要な場合が多いですが、必要であれば追加してください
+                // メインサイトのブログ記事リンクも新規タブで開くようにtarget="_blank"を追加
                 listItem.innerHTML = `
-                    <h3><a href="blog/${post.url}">${post.title}</a></h3>
+                    <h3><a href="blog/${post.url}" target="_blank">${post.title}</a></h3>
                     <span class="date">${post.date}</span>
                     <p>${post.summary}</p>
                 `;
