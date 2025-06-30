@@ -44,7 +44,7 @@
             font-size: 1.1em;
         }
 
-        /* 新しい「HOME」リンクのスタイル (blog.html用) */
+        /* 新しい「HOME」リンクのスタイル (blog/index.html用) */
         .home-link-top-right {
             position: absolute; /* 親要素に対して絶対位置指定 */
             top: 20px; /* 上からの位置 */
@@ -176,7 +176,7 @@
 <body>
 
     <header>
-        <a href="index.html" class="home-link-top-right">HOME</a>
+        <a href="../index.html" class="home-link-top-right">HOME</a>
 
         <div class="container">
             <h1>Kazuma Sakata's Blog</h1>
@@ -200,7 +200,6 @@
 
     <script>
         // ブログ記事のデータ配列 (すべての記事をここに格納)
-        // index.htmlとblog.htmlで同じデータを使用するため、この配列は両方のファイルに必要です。
         const blogPostsData = [
             {
                 title: "【最新】新機能の追加とサイト改善について",
@@ -240,22 +239,7 @@
             }
         ];
 
-        // ハンバーガーメニューに関連するJavaScriptを削除
-        // const hamburgerMenu = document.getElementById('hamburger-menu');
-        // const sideNav = document.getElementById('side-nav');
-        // hamburgerMenu.addEventListener('click', () => {
-        //     hamburgerMenu.classList.toggle('open');
-        //     sideNav.classList.toggle('open');
-        // });
-        // sideNav.querySelectorAll('a').forEach(link => {
-        //     link.addEventListener('click', () => {
-        //         hamburgerMenu.classList.remove('open');
-        //         sideNav.classList.remove('open');
-        //     });
-        // });
-
-
-        // ブログ記事を表示する関数 (blog.html用: すべての記事を表示)
+        // ブログ記事を表示する関数 (blog/index.html用: すべての記事を表示)
         function displayAllBlogPosts() {
             const blogList = document.getElementById('blog-list');
             if (!blogList) return; // blog-listが存在しない場合は処理しない
@@ -279,7 +263,7 @@
             });
         }
 
-        // ページロード時にブログ記事を表示 (blog.htmlのみで実行)
+        // ページロード時にブログ記事を表示 (blog/index.htmlのみで実行)
         document.addEventListener('DOMContentLoaded', displayAllBlogPosts);
     </script>
 
