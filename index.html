@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>坂田和真 | 写真家 | デザイナー </title>
 
-     <meta name="description" content="坂田和真のポートフォリオサイトです。経歴やプロジェクト事例などを紹介しています。">
+    <meta name="description" content="坂田和真のポートフォリオサイトです。経歴やプロジェクト事例などを紹介しています。">
 
     <style>
         /* 基本的なスタイル */
@@ -112,6 +112,34 @@
             margin-top: 20px;
         }
 
+        /* ブログ記事のスタイル */
+        .blog-posts ul {
+            list-style: none;
+            padding: 0;
+        }
+        .blog-posts li {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .blog-posts li h3 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            color: #007bff;
+        }
+        .blog-posts li .date {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .blog-posts li p {
+            margin-bottom: 0;
+        }
+
+
         /* --- ここからがスマホ対応の重要な部分です --- */
         @media (max-width: 768px) {
             .container {
@@ -184,7 +212,7 @@
                         テンプレート。
                     </p>
                 </li>
-                 <li>
+                <li>
                     <span class="period">2023年2月 - 2025年4月</span>
                     <strong>生徒会会長</strong> @ 穎明館中学高等学校
                     <p>
@@ -193,9 +221,14 @@
                         <a href="https://www.nhk.or.jp/shutoken/wr/20240209a.html">記事</a>
                     </p>
                 </li>
-                </ul>
+            </ul>
         </section>
 
+        <section class="blog-posts">
+            <h2>Blog Posts</h2>
+            <ul id="blog-list">
+                </ul>
+        </section>
 
         <section class="works">
             <h2>Works / Portfolio</h2>
@@ -237,6 +270,60 @@
             <p>&copy; 2025 坂田和真. All Rights Reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // ブログ記事のデータ配列
+        const blogPostsData = [
+            {
+                title: "【新記事】ポートフォリオサイトにブログ機能を追加しました",
+                date: "2025年6月30日",
+                summary: "このポートフォリオサイトにブログ機能を追加し、更新が簡単になりました。",
+                url: "#" // 実際の記事へのリンクを設定
+            },
+            {
+                title: "写真展開催のお知らせ",
+                date: "2025年6月25日",
+                summary: "初の個展を〇〇ギャラリーで開催します。詳細はこちら。",
+                url: "#" // 実際の記事へのリンクを設定
+            },
+            {
+                title: "新しいデザインプロジェクトの紹介",
+                date: "2025年6月15日",
+                summary: "最近手がけたウェブサイトのデザインについてご紹介します。",
+                url: "#" // 実際の記事へのリンクを設定
+            },
+            {
+                title: "ポートフォリオサイトをリニューアルしました！",
+                date: "2025年6月1日",
+                summary: "このサイトのデザインや機能について、変更点をご紹介します。",
+                url: "#" // 実際の記事へのリンクを設定
+            }
+        ];
+
+        // ブログ記事を表示する関数
+        function displayBlogPosts() {
+            const blogList = document.getElementById('blog-list');
+            blogList.innerHTML = ''; // 既存のリストをクリア
+
+            // ブログ記事を日付で降順にソート（新しいものが先頭）
+            blogPostsData.sort((a, b) => {
+                return new Date(b.date) - new Date(a.date);
+            });
+
+            blogPostsData.forEach(post => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                    <h3><a href="${post.url}" target="_blank">${post.title}</a></h3>
+                    <span class="date">${post.date}</span>
+                    <p>${post.summary}</p>
+                `;
+                blogList.appendChild(listItem);
+            });
+        }
+
+        // ページロード時にブログ記事を表示
+        document.addEventListener('DOMContentLoaded', displayBlogPosts);
+    </script>
 
 </body>
 </html>
