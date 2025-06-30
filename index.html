@@ -138,6 +138,23 @@
         .blog-posts li p {
             margin-bottom: 0;
         }
+        /* もっとみるボタンのスタイル */
+        .show-more-button {
+            display: block;
+            width: fit-content;
+            margin: 20px auto 0;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+        .show-more-button:hover {
+            background-color: #0056b3;
+        }
 
 
         /* --- ここからがスマホ対応の重要な部分です --- */
@@ -228,6 +245,7 @@
             <h2>Blog Posts</h2>
             <ul id="blog-list">
                 </ul>
+            <button id="show-more-button" class="show-more-button" style="display: none;">もっとみる</button>
         </section>
 
         <section class="works">
@@ -275,34 +293,50 @@
         // ブログ記事のデータ配列
         const blogPostsData = [
             {
-                title: "【新記事】ポートフォリオサイトにブログ機能を追加しました",
+                title: "【最新】新機能の追加とサイト改善について",
                 date: "2025年6月30日",
-                summary: "このポートフォリオサイトにブログ機能を追加し、更新が簡単になりました。",
+                summary: "ポートフォリオサイトに新たな機能を追加し、ユーザーエクスペリエンスを向上させました。",
                 url: "#" // 実際の記事へのリンクを設定
             },
             {
-                title: "写真展開催のお知らせ",
+                title: "【重要】写真展開催のお知らせ",
                 date: "2025年6月25日",
-                summary: "初の個展を〇〇ギャラリーで開催します。詳細はこちら。",
+                summary: "初の個展を〇〇ギャラリーで開催します。皆様のお越しをお待ちしております。",
                 url: "#" // 実際の記事へのリンクを設定
             },
             {
                 title: "新しいデザインプロジェクトの紹介",
                 date: "2025年6月15日",
-                summary: "最近手がけたウェブサイトのデザインについてご紹介します。",
+                summary: "最近手がけたウェブサイトのデザインと、その制作過程についてご紹介します。",
                 url: "#" // 実際の記事へのリンクを設定
             },
             {
                 title: "ポートフォリオサイトをリニューアルしました！",
                 date: "2025年6月1日",
-                summary: "このサイトのデザインや機能について、変更点をご紹介します。",
+                summary: "このサイトのデザインや機能について、変更点をご紹介します。ぜひご覧ください。",
+                url: "#" // 実際の記事へのリンクを設定
+            },
+            {
+                title: "初めてのブログ投稿",
+                date: "2025年5月20日",
+                summary: "記念すべき最初のブログ投稿です。今後、活動の様子を定期的にお伝えしていきます。",
+                url: "#" // 実際の記事へのリンクを設定
+            },
+            {
+                title: "デザインツール入門",
+                date: "2025年5月10日",
+                summary: "デザイナーとして使用しているおすすめツールと、その基本的な使い方について解説します。",
                 url: "#" // 実際の記事へのリンクを設定
             }
         ];
 
+        const initialDisplayCount = 3; // 初期表示する記事の数
+        let allPostsDisplayed = false; // 全ての記事が表示されているかどうかのフラグ
+
         // ブログ記事を表示する関数
         function displayBlogPosts() {
             const blogList = document.getElementById('blog-list');
+            const showMoreButton = document.getElementById('show-more-button');
             blogList.innerHTML = ''; // 既存のリストをクリア
 
             // ブログ記事を日付で降順にソート（新しいものが先頭）
@@ -310,7 +344,10 @@
                 return new Date(b.date) - new Date(a.date);
             });
 
-            blogPostsData.forEach(post => {
+            // 表示する記事の数を決定
+            const postsToDisplay = allPostsDisplayed ? blogPostsData : blogPostsData.slice(0, initialDisplayCount);
+
+            postsToDisplay.forEach(post => {
                 const listItem = document.createElement('li');
                 listItem.innerHTML = `
                     <h3><a href="${post.url}" target="_blank">${post.title}</a></h3>
@@ -319,10 +356,27 @@
                 `;
                 blogList.appendChild(listItem);
             });
+
+            // 「もっとみる」ボタンの表示/非表示を制御
+            if (blogPostsData.length > initialDisplayCount && !allPostsDisplayed) {
+                showMoreButton.style.display = 'block';
+            } else {
+                showMoreButton.style.display = 'none';
+            }
         }
 
-        // ページロード時にブログ記事を表示
-        document.addEventListener('DOMContentLoaded', displayBlogPosts);
+        // 「もっとみる」ボタンのイベントリスナー
+        document.addEventListener('DOMContentLoaded', () => {
+            displayBlogPosts(); // ページロード時に初期表示
+
+            const showMoreButton = document.getElementById('show-more-button');
+            if (showMoreButton) {
+                showMoreButton.addEventListener('click', () => {
+                    allPostsDisplayed = true; // 全ての記事を表示するフラグを立てる
+                    displayBlogPosts(); // 再度記事を表示
+                });
+            }
+        });
     </script>
 
 </body>
