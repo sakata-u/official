@@ -295,11 +295,7 @@
 
     <nav class="side-nav" id="side-nav">
         <ul>
-            <li><a href="index.html">HOME</a></li> <li><a href="index.html#about">About Me</a></li>
-            <li><a href="index.html#experience">Experience</a></li>
-            <li><a href="index.html#works">Works / Portfolio</a></li>
-            <li><a href="index.html#certification">Certification</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="index.html">HOME</a></li>
             <li><a href="blog.html">ブログ一覧</a></li>
         </ul>
     </nav>
@@ -447,6 +443,9 @@
         // サイドナビゲーションのリンクをクリックしたらメニューを閉じる
         sideNav.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
+                // スムーズスクロールが必要な場合は、ここで別途処理を記述
+                // 例: event.preventDefault();
+                //     document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
                 hamburgerMenu.classList.remove('open');
                 sideNav.classList.remove('open');
             });
