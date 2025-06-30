@@ -36,12 +36,13 @@
 
         header h1 {
             margin: 0;
-            font-size: 2.5em;
+            /* ここを調整 */
+            font-size: 1.1em; /* index.htmlのheader pと同じサイズに */
         }
 
         header p {
             margin: 5px 0 0;
-            font-size: 1.1em;
+            font-size: 1.1em; /* 変更なし */
         }
 
         /* 新しい「HOME」リンクのスタイル (blog/index.html用) */
@@ -148,11 +149,11 @@
             }
 
             header h1 {
-                font-size: 2em;
+                font-size: 1.5em; /* スマホでの調整 */
             }
 
             header p {
-                font-size: 1em;
+                font-size: 1em; /* スマホでの調整 */
             }
 
             section {
@@ -174,11 +175,11 @@
 
         @media (max-width: 480px) {
             header h1 {
-                font-size: 1.8em;
+                font-size: 1.2em; /* より小さいスマホでの調整 */
             }
 
             header p {
-                font-size: 0.9em;
+                font-size: 0.9em; /* より小さいスマホでの調整 */
             }
         }
     </style>
@@ -190,6 +191,7 @@
 
         <div class="container">
             <h1>すべての記事一覧</h1>
+            <p></p> 
         </div>
     </header>
 
@@ -263,7 +265,8 @@
             // すべての記事を表示
             sortedPosts.forEach((post, index) => { // indexも取得
                 const listItem = document.createElement('li');
-                // 最初の記事に `post-0` クラスを追加
+                // 最初の記事 (タイトルが「【最新】新機能の追加とサイト改善について」) に `post-0` クラスを追加
+                // より頑健にするならタイトル文字列で判定することも可能ですが、ここでは順番に依存
                 if (index === 0) {
                     listItem.classList.add('post-0');
                 }
@@ -274,6 +277,7 @@
                 `;
                 // クリック時のvisitedクラス追加
                 listItem.querySelector('a').addEventListener('click', function() {
+                    // イベントリスナーのthisはaタグなので、親要素のliにvisitedクラスを付与
                     listItem.classList.add('visited');
                 });
                 blogList.appendChild(listItem);
