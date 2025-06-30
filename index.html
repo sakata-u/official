@@ -322,47 +322,8 @@
         </div>
     </footer>
 
+    <script src="blog/blogPostsData.js"></script>
     <script>
-        // ブログ記事のデータ配列 (すべての記事をここに格納)
-        const blogPostsData = [
-            {
-                title: "【最新】新機能の追加とサイト改善について",
-                date: "2025年6月30日",
-                summary: "ポートフォリオサイトに新たな機能を追加し、ユーザーエクスペリエンスを向上させました。",
-                url: "#" // 実際の記事へのリンクを設定
-            },
-            {
-                title: "【重要】写真展開催のお知らせ",
-                date: "2025年6月25日",
-                summary: "初の個展を〇〇ギャラリーで開催します。皆様のお越しをお待ちしております。",
-                url: "#" // 実際の記事へのリンクを設定
-            },
-            {
-                title: "新しいデザインプロジェクトの紹介",
-                date: "2025年6月15日",
-                summary: "最近手がけたウェブサイトのデザインと、その制作過程についてご紹介します。",
-                url: "#" // 実際の記事へのリンクを設定
-            },
-            {
-                title: "ポートフォリオサイトをリニューアルしました！",
-                date: "2025年6月1日",
-                summary: "このサイトのデザインや機能について、変更点をご紹介します。ぜひご覧ください。",
-                url: "#" // 実際の記事へのリンクを設定
-            },
-            {
-                title: "初めてのブログ投稿",
-                date: "2025年5月20日",
-                summary: "記念すべき最初のブログ投稿です。今後、活動の様子を定期的にお伝えしていきます。",
-                url: "#" // 実際の記事へのリンクを設定
-            },
-            {
-                title: "デザインツール入門",
-                date: "2025年5月10日",
-                summary: "デザイナーとして使用しているおすすめツールと、その基本的な使い方について解説します。",
-                url: "#" // 実際の記事へのリンクを設定
-            }
-        ];
-
         // ブログ記事を表示する関数 (index.html用: 最新3件のみ)
         function displayBlogPostsIndex() {
             const blogList = document.getElementById('blog-list');
@@ -370,18 +331,23 @@
 
             blogList.innerHTML = ''; // 既存のリストをクリア
 
-            // ブログ記事を日付で降順にソート（新しいものが先頭）
+            // blogPostsData は blog/blogPostsData.js から読み込まれる
             const sortedPosts = [...blogPostsData].sort((a, b) => {
-                return new Date(b.date) - new Date(a.date);
+                // 日付文字列を'YYYY年MM月DD日'から'YYYY/MM/DD'に変換してDateオブジェクトを作成
+                const dateA = new Date(a.date.replace(/年|月|日/g, '/').slice(0, -1));
+                const dateB = new Date(b.date.replace(/年|月|日/g, '/').slice(0, -1));
+                return dateB - dateA;
             });
+
 
             // 最新の3件のみ表示
             const postsToDisplay = sortedPosts.slice(0, 3);
 
             postsToDisplay.forEach(post => {
                 const listItem = document.createElement('li');
+                // メインサイトではtarget="_blank"は不要な場合が多いですが、必要であれば追加してください
                 listItem.innerHTML = `
-                    <h3><a href="${post.url}" target="_blank">${post.title}</a></h3>
+                    <h3><a href="blog/${post.url}">${post.title}</a></h3>
                     <span class="date">${post.date}</span>
                     <p>${post.summary}</p>
                 `;
