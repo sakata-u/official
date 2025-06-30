@@ -50,17 +50,17 @@
             top: 20px; /* 上からの位置 */
             right: 20px; /* 右からの位置 */
             text-decoration: none;
-            color: #2A2D57; /* リンクの色を変更 */
+            color: #133754; /* リンクの色を変更 */
             font-weight: bold;
             padding: 5px 10px; /* クリックしやすいようにパディング */
-            border: 1px solid #2A2D57; /* 枠線も変更 */
+            border: 1px solid #133754; /* 枠線も変更 */
             border-radius: 5px; /* 角を丸く */
             transition: all 0.3s ease; /* ホバー時のアニメーション */
             z-index: 10; /* 他の要素より手前に表示 */
         }
 
         .home-link-top-right:hover {
-            background-color: #2A2D57; /* ホバー時の背景色も変更 */
+            background-color: #133754; /* ホバー時の背景色も変更 */
             color: #fff; /* ホバー時の文字色 */
         }
 
@@ -89,12 +89,22 @@
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
+        /* クリック済みの記事のスタイル */
+        .blog-posts li.visited h3,
+        .blog-posts li.visited p {
+            opacity: 0.6; /* 文字を薄くする */
+        }
         .blog-posts li h3 {
             margin-top: 0;
             margin-bottom: 8px;
-            color: #2A2D57; /* ブログ記事タイトルの色を変更 */
+            color: #133754; /* ブログ記事タイトルの色を変更 */
             font-size: 1.2em;
         }
+        /* 「【最新】新機能の追加とサイト改善について」のタイトル色を#000000に */
+        .blog-posts li.post-0 h3 { /* 最初の記事 (index 0) のタイトル */
+            color: #000000;
+        }
+
         .blog-posts li .date {
             font-size: 0.85em;
             color: #888;
@@ -109,7 +119,7 @@
         .blog-posts .read-more-link {
             display: inline-block;
             margin-top: 10px;
-            color: #2A2D57; /* リンクの色を変更 (このファイルでは使われていないが念のため) */
+            color: #133754; /* リンクの色を変更 (このファイルでは使われていないが念のため) */
             text-decoration: none;
             font-weight: bold;
         }
@@ -179,8 +189,7 @@
         <a href="../" class="home-link-top-right">HOME</a>
 
         <div class="container">
-            <h1>Kazuma Sakata's Blog</h1>
-            <p>すべての記事一覧</p>
+            <h1>すべての記事一覧</h1>
         </div>
     </header>
 
@@ -252,13 +261,21 @@
             });
 
             // すべての記事を表示
-            sortedPosts.forEach(post => {
+            sortedPosts.forEach((post, index) => { // indexも取得
                 const listItem = document.createElement('li');
+                // 最初の記事に `post-0` クラスを追加
+                if (index === 0) {
+                    listItem.classList.add('post-0');
+                }
                 listItem.innerHTML = `
                     <h3><a href="${post.url}" target="_blank">${post.title}</a></h3>
                     <span class="date">${post.date}</span>
                     <p>${post.summary}</p>
                 `;
+                // クリック時のvisitedクラス追加
+                listItem.querySelector('a').addEventListener('click', function() {
+                    listItem.classList.add('visited');
+                });
                 blogList.appendChild(listItem);
             });
         }
