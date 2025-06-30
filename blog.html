@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>坂田和真 | ブログ一覧 </title>
+
+    <meta name="description" content="坂田和真のブログ記事一覧です。">
+
+    <style>
+        /* 基本的なスタイル */
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4; /* 全体の背景色 */
+            color: #333;
+            overflow-x: hidden; /* 横方向のスクロールバーを非表示 */
+        }
+
+        .container {
+            width: 80%; /* デスクトップでの表示幅 */
+            max-width: 1200px; /* 最大幅 */
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        header {
+            background-color: transparent; /* ヘッダーの背景色を透明に */
+            color: #333; /* ヘッダーのテキスト色をbodyと同じに調整 */
+            padding: 20px 0;
+            text-align: center;
+            position: relative; /* ハンバーガーメニューの位置決めに必要 */
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 1.1em;
+        }
+
+        section {
+            background-color: transparent; /* セクションの背景色を透明に */
+            margin-bottom: 20px;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: none; /* セクションの影をなくす */
+        }
+
+        /* ハンバーガーメニューのスタイル */
+        .hamburger-menu {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 30px;
+            height: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            z-index: 1000; /* 最前面に表示 */
+        }
+
+        .hamburger-menu span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            transition: all 0.3s ease;
+        }
+
+        /* メニューオープン時のアニメーション */
+        .hamburger-menu.open span:nth-child(1) {
+            transform: translateY(11px) rotate(45deg);
+        }
+        .hamburger-menu.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger-menu.open span:nth-child(3) {
+            transform: translateY(-11px) rotate(-45deg);
+        }
+
+        /* サイドナビゲーションのスタイル */
+        .side-nav {
+            position: fixed;
+            top: 0;
+            left: -250px; /* 初期状態では画面外に隠す */
+            width: 250px;
+            height: 100%;
+            background-color: #fff;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+            transition: left 0.3s ease;
+            z-index: 999;
+            padding-top: 60px; /* ハンバーガーメニューとの重なりを避ける */
+        }
+
+        .side-nav.open {
+            left: 0; /* メニューが開いた状態 */
+        }
+
+        .side-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .side-nav ul li a {
+            display: block;
+            padding: 15px 20px;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #eee;
+        }
+
+        .side-nav ul li a:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* ブログ記事のスタイル */
+        .blog-posts ul {
+            list-style: none;
+            padding: 0;
+        }
+        .blog-posts li {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* 少し強めの影 */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .blog-posts li:hover {
+            transform: translateY(-3px); /* ホバーで少し浮き上がる */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* 影を濃くする */
+        }
+        .blog-posts li h3 {
+            margin-top: 0;
+            margin-bottom: 8px; /* 少しスペースを増やす */
+            color: #007bff;
+            font-size: 1.2em; /* タイトルを少し大きく */
+        }
+        .blog-posts li .date {
+            font-size: 0.85em; /* 日付を少し小さく */
+            color: #888; /* 色を薄く */
+            margin-bottom: 12px; /* スペースを増やす */
+            display: block;
+        }
+        .blog-posts li p {
+            margin-bottom: 0;
+            font-size: 0.95em; /* 概要文のフォントサイズ調整 */
+            color: #555;
+        }
+        .blog-posts .read-more-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .blog-posts .read-more-link:hover {
+            text-decoration: underline;
+        }
+
+        /* 「メインページへ戻る」ボタンのスタイル */
+        .back-to-home {
+            display: block;
+            width: fit-content;
+            margin: 30px auto 0;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .back-to-home:hover {
+            background-color: #0056b3;
+        }
+
+        /* --- ここからがスマホ対応の重要な部分です --- */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 10px 0;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            /* スマホでのハンバーガーメニューの位置調整 */
+            .hamburger-menu {
+                top: 15px;
+                left: 15px;
+            }
+            .side-nav {
+                width: 200px; /* スマホでのサイドメニュー幅 */
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            header p {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="hamburger-menu" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="container">
+            <h1>Kazuma Sakata's Blog</h1>
+            <p>すべての記事一覧</p>
+        </div>
+    </header>
+
+    <nav class="side-nav" id="side-nav">
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="blog.html">ブログ一覧</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <section class="blog-posts">
+            <h2>すべてのブログ記事</h2>
+            <ul id="blog-list">
+                </ul>
+            <a href="index.html" class="back-to-home">メインページへ戻る</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 坂田和真. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ブログ記事のデータ配列 (すべての記事をここに格納)
+        // index.htmlとblog.htmlで同じデータを使用するため、この配列は両方のファイルに必要です。
+        const blogPostsData = [
+            {
+                title: "【最新】新機能の追加とサイト改善について",
+                date: "2025年6月30日",
+                summary: "ポートフォリオサイトに新たな機能を追加し、ユーザーエクスペリエンスを向上させました。",
+                url: "#" // 実際の記事へのリンクを設定
+            },
+            {
+                title: "【重要】写真展開催のお知らせ",
+                date: "2025年6月25日",
+                summary: "初の個展を〇〇ギャラリーで開催します。皆様のお越しをお待ちしております。",
+                url: "#" // 実際の記事へのリンクを設定
+            },
+            {
+                title: "新しいデザインプロジェクトの紹介",
+                date: "2025年6月15日",
+                summary: "最近手がけたウェブサイトのデザインと、その制作過程についてご紹介します。",
+                url: "#" // 実際の記事へのリンクを設定
+            },
+            {
+                title: "ポートフォリオサイトをリニューアルしました！",
+                date: "2025年6月1日",
+                summary: "このサイトのデザインや機能について、変更点をご紹介します。ぜひご覧ください。",
+                url: "#" // 実際の記事へのリンクを設定
+            },
+            {
+                title: "初めてのブログ投稿",
+                date: "2025年5月20日",
+                summary: "記念すべき最初のブログ投稿です。今後、活動の様子を定期的にお伝えしていきます。",
+                url: "#" // 実際の記事へのリンクを設定
+            },
+            {
+                title: "デザインツール入門",
+                date: "2025年5月10日",
+                summary: "デザイナーとして使用しているおすすめツールと、その基本的な使い方について解説します。",
+                url: "#" // 実際の記事へのリンクを設定
+            }
+        ];
+
+        // ハンバーガーメニューの開閉機能
+        const hamburgerMenu = document.getElementById('hamburger-menu');
+        const sideNav = document.getElementById('side-nav');
+
+        hamburgerMenu.addEventListener('click', () => {
+            hamburgerMenu.classList.toggle('open');
+            sideNav.classList.toggle('open');
+        });
+
+        // サイドナビゲーションのリンクをクリックしたらメニューを閉じる
+        sideNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerMenu.classList.remove('open');
+                sideNav.classList.remove('open');
+            });
+        });
+
+
+        // ブログ記事を表示する関数 (blog.html用: すべての記事を表示)
+        function displayAllBlogPosts() {
+            const blogList = document.getElementById('blog-list');
+            if (!blogList) return; // blog-listが存在しない場合は処理しない
+
+            blogList.innerHTML = ''; // 既存のリストをクリア
+
+            // ブログ記事を日付で降順にソート（新しいものが先頭）
+            const sortedPosts = [...blogPostsData].sort((a, b) => {
+                return new Date(b.date) - new Date(a.date);
+            });
+
+            // すべての記事を表示
+            sortedPosts.forEach(post => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                    <h3><a href="${post.url}" target="_blank">${post.title}</a></h3>
+                    <span class="date">${post.date}</span>
+                    <p>${post.summary}</p>
+                `;
+                blogList.appendChild(listItem);
+            });
+        }
+
+        // ページロード時にブログ記事を表示 (blog.htmlのみで実行)
+        document.addEventListener('DOMContentLoaded', displayAllBlogPosts);
+    </script>
+
+</body>
+</html>
