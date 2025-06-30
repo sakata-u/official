@@ -16,6 +16,7 @@
             padding: 0;
             background-color: #f4f4f4; /* 全体の背景色 */
             color: #333;
+            overflow-x: hidden; /* 横方向のスクロールバーを非表示 */
         }
 
         .container {
@@ -30,6 +31,7 @@
             color: #333; /* ヘッダーのテキスト色をbodyと同じに調整 */
             padding: 20px 0;
             text-align: center;
+            position: relative; /* ハンバーガーメニューの位置決めに必要 */
         }
 
         header h1 {
@@ -57,7 +59,7 @@
             max-width: 200px;
             height: auto;
             border-radius: 50%;
-            border: none
+            border: none;
         }
 
         /* 経歴の項目ごとのスタイル */
@@ -112,6 +114,75 @@
             margin-top: 20px;
         }
 
+        /* ハンバーガーメニューのスタイル */
+        .hamburger-menu {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 30px;
+            height: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            z-index: 1000; /* 最前面に表示 */
+        }
+
+        .hamburger-menu span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            transition: all 0.3s ease;
+        }
+
+        /* メニューオープン時のアニメーション */
+        .hamburger-menu.open span:nth-child(1) {
+            transform: translateY(11px) rotate(45deg);
+        }
+        .hamburger-menu.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger-menu.open span:nth-child(3) {
+            transform: translateY(-11px) rotate(-45deg);
+        }
+
+        /* サイドナビゲーションのスタイル */
+        .side-nav {
+            position: fixed;
+            top: 0;
+            left: -250px; /* 初期状態では画面外に隠す */
+            width: 250px;
+            height: 100%;
+            background-color: #fff;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+            transition: left 0.3s ease;
+            z-index: 999;
+            padding-top: 60px; /* ハンバーガーメニューとの重なりを避ける */
+        }
+
+        .side-nav.open {
+            left: 0; /* メニューが開いた状態 */
+        }
+
+        .side-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .side-nav ul li a {
+            display: block;
+            padding: 15px 20px;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #eee;
+        }
+
+        .side-nav ul li a:hover {
+            background-color: #f0f0f0;
+        }
+
         /* ブログ記事のスタイル */
         .blog-posts ul {
             list-style: none;
@@ -119,41 +190,48 @@
         }
         .blog-posts li {
             background-color: #fff;
-            padding: 15px;
+            padding: 20px;
             margin-bottom: 15px;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* 少し強めの影 */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .blog-posts li:hover {
+            transform: translateY(-3px); /* ホバーで少し浮き上がる */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* 影を濃くする */
         }
         .blog-posts li h3 {
             margin-top: 0;
-            margin-bottom: 5px;
+            margin-bottom: 8px; /* 少しスペースを増やす */
             color: #007bff;
+            font-size: 1.2em; /* タイトルを少し大きく */
         }
         .blog-posts li .date {
-            font-size: 0.9em;
-            color: #666;
-            margin-bottom: 10px;
+            font-size: 0.85em; /* 日付を少し小さく */
+            color: #888; /* 色を薄く */
+            margin-bottom: 12px; /* スペースを増やす */
             display: block;
         }
         .blog-posts li p {
             margin-bottom: 0;
+            font-size: 0.95em; /* 概要文のフォントサイズ調整 */
+            color: #555;
         }
-        /* もっとみるボタンのスタイル */
-        .show-more-button {
-            display: block;
-            width: fit-content;
-            margin: 20px auto 0;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            text-align: center;
+        .blog-posts .read-more-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #007bff;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-            cursor: pointer;
+            font-weight: bold;
         }
-        .show-more-button:hover {
-            background-color: #0056b3;
+        .blog-posts .read-more-link:hover {
+            text-decoration: underline;
+        }
+
+
+        /* 「もっとみる」ボタンのスタイルを調整 (今回はblog.htmlに移動するので、ここでは表示しない) */
+        .show-more-button {
+            display: none; /* index.htmlでは非表示 */
         }
 
 
@@ -179,6 +257,15 @@
             h2 {
                 font-size: 1.5em;
             }
+
+            /* スマホでのハンバーガーメニューの位置調整 */
+            .hamburger-menu {
+                top: 15px;
+                left: 15px;
+            }
+            .side-nav {
+                width: 200px; /* スマホでのサイドメニュー幅 */
+            }
         }
 
         @media (max-width: 480px) {
@@ -195,14 +282,30 @@
 <body>
 
     <header>
+        <div class="hamburger-menu" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <div class="container">
             <h1>Kazuma Sakata</h1>
             <p>写真家 / デザイナー</p>
         </div>
     </header>
 
+    <nav class="side-nav" id="side-nav">
+        <ul>
+            <li><a href="index.html">HOME</a></li> <li><a href="index.html#about">About Me</a></li>
+            <li><a href="index.html#experience">Experience</a></li>
+            <li><a href="index.html#works">Works / Portfolio</a></li>
+            <li><a href="index.html#certification">Certification</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="blog.html">ブログ一覧</a></li>
+        </ul>
+    </nav>
+
     <main class="container">
-        <section class="profile">
+        <section class="profile" id="about">
             <h2>About Me</h2>
             <img src="https://raw.githubusercontent.com/sakata-u/official/418cea9a2e3272622c9805ae2146dd852858343d/image.jpg" alt="坂田和真のプロフィール写真" class="profile-image">
             <p>
@@ -212,7 +315,7 @@
         </section>
 
 
-        <section class="experience">
+        <section class="experience" id="experience">
             <h2>Experience</h2>
             <ul>
                 <li>
@@ -241,14 +344,16 @@
             </ul>
         </section>
 
-        <section class="blog-posts">
-            <h2>Blog Posts</h2>
+        <section class="blog-posts" id="blog">
+            <h2>Latest Blog Posts</h2>
             <ul id="blog-list">
                 </ul>
-            <button id="show-more-button" class="show-more-button" style="display: none;">もっとみる</button>
+            <p style="text-align: right; margin-top: 20px;">
+                <a href="blog.html" class="read-more-link">すべてのブログ記事を見る &gt;&gt;</a>
+            </p>
         </section>
 
-        <section class="works">
+        <section class="works" id="works">
             <h2>Works / Portfolio</h2>
             <ul>
                 <li><a href="https://www.instagram.com/seitokai.jp">生徒会活動支援協会</a> - デザインとアカウント運用を行っています。</li>
@@ -257,7 +362,7 @@
             </ul>
         </section>
 
-           <section class="Certification">
+           <section class="Certification" id="certification">
             <h2>Certification</h2>
             <ul>
                 <li>
@@ -272,7 +377,7 @@
                 </ul>
         </section>
 
-        <section class="contact">
+        <section class="contact" id="contact">
             <h2>Contact</h2>
             <p>ご連絡は以下のリンクからお願いします。</p>
             <ul>
@@ -290,7 +395,7 @@
     </footer>
 
     <script>
-        // ブログ記事のデータ配列
+        // ブログ記事のデータ配列 (すべての記事をここに格納)
         const blogPostsData = [
             {
                 title: "【最新】新機能の追加とサイト改善について",
@@ -330,22 +435,38 @@
             }
         ];
 
-        const initialDisplayCount = 3; // 初期表示する記事の数
-        let allPostsDisplayed = false; // 全ての記事が表示されているかどうかのフラグ
+        // ハンバーガーメニューの開閉機能
+        const hamburgerMenu = document.getElementById('hamburger-menu');
+        const sideNav = document.getElementById('side-nav');
 
-        // ブログ記事を表示する関数
-        function displayBlogPosts() {
+        hamburgerMenu.addEventListener('click', () => {
+            hamburgerMenu.classList.toggle('open');
+            sideNav.classList.toggle('open');
+        });
+
+        // サイドナビゲーションのリンクをクリックしたらメニューを閉じる
+        sideNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerMenu.classList.remove('open');
+                sideNav.classList.remove('open');
+            });
+        });
+
+
+        // ブログ記事を表示する関数 (index.html用: 最新3件のみ)
+        function displayBlogPostsIndex() {
             const blogList = document.getElementById('blog-list');
-            const showMoreButton = document.getElementById('show-more-button');
+            if (!blogList) return; // blog-listが存在しない場合は処理しない
+
             blogList.innerHTML = ''; // 既存のリストをクリア
 
             // ブログ記事を日付で降順にソート（新しいものが先頭）
-            blogPostsData.sort((a, b) => {
+            const sortedPosts = [...blogPostsData].sort((a, b) => {
                 return new Date(b.date) - new Date(a.date);
             });
 
-            // 表示する記事の数を決定
-            const postsToDisplay = allPostsDisplayed ? blogPostsData : blogPostsData.slice(0, initialDisplayCount);
+            // 最新の3件のみ表示
+            const postsToDisplay = sortedPosts.slice(0, 3);
 
             postsToDisplay.forEach(post => {
                 const listItem = document.createElement('li');
@@ -356,27 +477,10 @@
                 `;
                 blogList.appendChild(listItem);
             });
-
-            // 「もっとみる」ボタンの表示/非表示を制御
-            if (blogPostsData.length > initialDisplayCount && !allPostsDisplayed) {
-                showMoreButton.style.display = 'block';
-            } else {
-                showMoreButton.style.display = 'none';
-            }
         }
 
-        // 「もっとみる」ボタンのイベントリスナー
-        document.addEventListener('DOMContentLoaded', () => {
-            displayBlogPosts(); // ページロード時に初期表示
-
-            const showMoreButton = document.getElementById('show-more-button');
-            if (showMoreButton) {
-                showMoreButton.addEventListener('click', () => {
-                    allPostsDisplayed = true; // 全ての記事を表示するフラグを立てる
-                    displayBlogPosts(); // 再度記事を表示
-                });
-            }
-        });
+        // ページロード時にブログ記事を表示 (index.htmlのみで実行)
+        document.addEventListener('DOMContentLoaded', displayBlogPostsIndex);
     </script>
 
 </body>
