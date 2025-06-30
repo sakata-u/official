@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【最新】新機能の追加とサイト改善について | 坂田和真のブログ</title>
+    <meta name="description" content="ポートフォリオサイトに新たな機能を追加し、ユーザーエクスペリエンスを向上させました。">
+    <style>
+        /* CSSは共通化するか、ここで記述します */
+        body { font-family: sans-serif; line-height: 1.6; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
+        .container { width: 80%; max-width: 800px; margin: 20px auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        h1 { color: #133754; font-size: 2em; margin-bottom: 10px; }
+        .date { font-size: 0.9em; color: #888; margin-bottom: 20px; display: block; }
+        p { margin-bottom: 1em; }
+        .back-link { display: inline-block; margin-top: 20px; color: #4169e1; text-decoration: none; font-weight: bold; }
+        .back-link:hover { text-decoration: underline; }
+        /* 必要に応じてスマホ対応なども追加 */
+        @media (max-width: 768px) {
+            .container { width: 95%; padding: 15px; }
+            h1 { font-size: 1.8em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>【最新】新機能の追加とサイト改善について</h1>
+        <span class="date">2025年6月30日</span>
+        
+        <p>こんにちは！この度、私のポートフォリオサイトにいくつかの新機能を追加し、全体的なユーザーエクスペリエンスの向上を図りました。</p>
+        
+        <h2>主な変更点</h2>
+        <h3>1. ブログ機能の拡充</h3>
+        <p>これまでトップページに最新記事が数件表示されるのみでしたが、今回のアップデートにより、ブログ記事を一覧で確認できる**「ブログ一覧ページ」**を新設しました。これにより、過去の全ての記事に簡単にアクセスできるようになります。</p>
+        
+        <h3>2. レスポンシブデザインの最適化</h3>
+        <p>スマートフォンやタブレットからのアクセスでも快適に閲覧できるよう、**レスポンシブデザインをさらに最適化**しました。どのデバイスからでも、美しいレイアウトでコンテンツを楽しんでいただけます。</p>
+        
+        <h3>3. パフォーマンスの改善</h3>
+        <p>ページの読み込み速度を向上させるため、画像の最適化やJavaScriptコードの見直しを行いました。これにより、より**スムーズなサイト閲覧**が可能になりました。</p>
+        
+        <h2>今後の展望</h2>
+        <p>これからも定期的にサイトの更新を行い、皆様にとって有益な情報や、私の活動に関する最新情報をお届けしていく予定です。皆様からのフィードバックも大歓迎ですので、ぜひお気軽にお寄せください。</p>
+        
+        <a href="./" class="back-link">&lt;&lt; ブログ一覧に戻る</a>
+    </div>
+</body>
+</html>
